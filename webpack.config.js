@@ -3,25 +3,10 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     mode: "production",
-    entry: "./node_modules/socialarlib/",
+    entry: "./node_modules/socialarlib/src",
     output: {
         path: path.resolve(__dirname, './scripts'),
-        filename: "socialarlib.js",
-    },
-    module: {
-        rules: [
-            {
-                include: [
-                    path.resolve(__dirname, "ARTween")
-                ],
-                exclude: []
-            },
-            {
-                include: [
-                    path.resolve(__dirname, "Math2"),
-                ]
-            }
-        ]
+        filename: "socialarlib.js"
     },
     externals: {
         Animation: "commonjs Animation",

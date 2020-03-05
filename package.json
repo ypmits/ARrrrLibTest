@@ -4,7 +4,7 @@
   "description": "A test",
   "main": "index.js",
   "scripts": {
-    "test": "webpack ./node_modules/socialarlib/src/ARTween/ARrrrTween.js ./node_modules/socialarlib/src/ARTween/Ease.js --config=webpack.config.js"
+    "test": "webpack ./node_modules/socialarlib/index.js --config=webpack.config.js"
   },
   "keywords": [
     "test"
