@@ -1,0 +1,56 @@
+{
+  "_from": "socialarlib@1.0.1",
+  "_id": "socialarlib@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-f58ncZ2OthcjR4ALP1Rryso9acJxToQpkJVzsuu2bgUYpk3W7iEP3oadHfWRD6DDZ362k4INo/uyls8pKq5V5A==",
+  "_location": "/socialarlib",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "socialarlib@1.0.1",
+    "name": "socialarlib",
+    "escapedName": "socialarlib",
+    "rawSpec": "1.0.1",
+    "saveSpec": null,
+    "fetchSpec": "1.0.1"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/socialarlib/-/socialarlib-1.0.1.tgz",
+  "_shasum": "9011507dc327272a1f99f30ae3ac00d080cfb890",
+  "_spec": "socialarlib@1.0.1",
+  "_where": "/Users/davelenz/Documents/GitHub/ARrrrLibTest",
+  "author": {
+    "name": "Dave Lenz",
+    "email": "ypmits@gmail.com",
+    "url": "https://www.ypmits.nl"
+  },
+  "bugs": {
+    "url": "https://github.com/ypmits/ARrrrLib/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A collection of utility libraries for Facebook's AR platform",
+  "homepage": "https://github.com/ypmits/ARrrrLib#readme",
+  "keywords": [
+    "sparkar",
+    "ar",
+    "facebook",
+    "utility",
+    "utilities"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "socialarlib",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ypmits/ARrrrLib.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}
