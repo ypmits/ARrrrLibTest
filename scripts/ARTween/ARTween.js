@@ -1,18 +1,23 @@
-import Animation from 'Animation';
-import Reactive from 'Reactive';
-import Time from 'Time';
+const console = require('Diagnostics');
+const Scene = require('Scene');
+const Animation = require('Animation');
+const Reactive = require('Reactive');
+const Time = require('Time');
 
 /**
- * Example:
-	var rect = Scene.root.find("rect");
-	var tween = ARrrrTween(rect, [{x:0, duration: 2000},{y: 100, duration: 2000}, {rotationZ: 360, duration: 2000}, {scaleX: 2, duration: 2000}, {scaleY: 20, duration: 2000}]).onComplete(function(){
-		Diagnostics.log("Done!");
-	});
+Example:
+const Tweener = require("./ARTween").ARTween;
+const Delay = require("./ARTween").Delay;
+const Ease = require("./ARTween").Ease;
+
+var rect = Scene.root.find("rect");
+var tween = ARrrrTween(rect, [{x:0, duration: 2000},{y: 100, duration: 2000}, {rotationZ: 360, duration: 2000}, {scaleX: 2, duration: 2000}, {scaleY: 20, duration: 2000}]).onComplete(function(){
+	Diagnostics.log("Done!");
+});
  */
-export const ARTween = class {
+class ARTween {
 	constructor(object, values, autoplay) {
 		//Set values and controls
-		console.log("Calling ARTween's constructor");
 		this.object = object;
 		this.values = values;
 
@@ -106,11 +111,11 @@ export const ARTween = class {
 				});
 				
 				if (driver != null) {
-					driver.onCompleted().subscribe(function () {
+					driver.onCompleted().subscribe(() => {
 						if(this.isPlaying) {
 							callback();
 						}
-					}.bind(this));
+					});
 				}
 			}
 
@@ -514,11 +519,11 @@ export const ARTween = class {
 
 		signal = Animate;
 
-		AnimationDriver.onCompleted().subscribe(function(){
+		AnimationDriver.onCompleted().subscribe(() => {
 			if(this.isPlaying) {
 				onComplete();
 			}
-		}.bind(this));
+		});
 		AnimationDriver.onAfterIteration().subscribe(onIteration);
 		AnimationDriver.onAfterIteration().subscribe(onStart);
 
@@ -623,12 +628,12 @@ export const ARTween = class {
 
 			//if finished
 			if (driver != null) {
-				driver.onCompleted().subscribe(function(){
+				driver.onCompleted().subscribe(() => {
 					if(this.isPlaying) {
 						this.finished = true;
 						this.started = false;
 					}
-				}.bind(this));
+				});
 			}
 
 			this.started = true;
@@ -649,4 +654,45 @@ export const ARTween = class {
 	}
 }
 
-module.exports = { ARTween }
+class Ease 
+{
+	static InBack (){ return "easeInBack"; }
+	static OutBack (){ return "easeOutBack"; }
+	static InOutBack (){ return "easeInOutBack"; }
+	static InBounce (){ return "easeInBounce"; }
+	static OutBounce (){ return "easeOutBounce"; }
+	static InOutBounce (){ return "easeInOutBounce"; }
+	static InCirc (){ return "easeInCirc"; }
+	static OutCirc (){ return "easeOutCirc"; }
+	static InOutCirc (){ return "easeInOutCirc"; }
+	static InCubic (){ return "easeInCubic"; }
+	static OutCubic (){ return "easeOutCubic"; }
+	static InOutCubic (){ return "easeInOutCubic"; }
+	static InElastic (){ return "easeInElastic"; }
+	static OutElastic (){ return "easeOutElastic"; }
+	static InOutElastic (){ return "easeInOutElastic"; }
+	static InExpo (){ return "easeInExpo"; }
+	static OutExpo (){ return "easeOutExpo"; }
+	static InOutExpo (){ return "easeInOutExpo"; }
+	static InQuad (){ return "easeInQuad"; }
+	static OutQuad (){ return "easeOutQuad"; }
+	static InOutQuad (){ return "easeInOutQuad"; }
+	static InQuart (){ return "easeInQuart"; }
+	static OutQuart (){ return "easeOutQuart"; }
+	static InOutQuart (){ return "easeInOutQuart"; }
+	static InQuint (){ return "easeInQuint"; }
+	static OutQuint (){ return "easeOutQuint"; }
+	static InOutQuint (){ return "easeInOutQuint"; }
+	static InSine (){ return "easeInSine"; }
+	static OutSine (){ return "easeOutSine"; }
+	static InOutSine(){ return "easeInOutSine"; }
+	static Linear() { return "linear"; }
+}
+
+class Delay {
+	constructor(delay, completeFunction) {
+		var t = new ARTween(Scene.root,[{alpha:1, duration:delay, ease:Ease.Linear()}], true).onComplete(()=>{completeFunction();});
+	}
+}
+
+module.exports = { ARTween, Ease, Delay }
