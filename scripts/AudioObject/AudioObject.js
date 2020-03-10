@@ -8,7 +8,7 @@ import Audio from 'Audio';
  * @param {string} audioName The name to find in the scene
  * @param {bool} autoplay If the audio should be played after it's initated
  */
-export default class {
+class AudioObject {
 	constructor(speakerName, playbackControllerName, autoplay)
 	{
 		this.speaker = Scene.root.find(speakerName);
@@ -43,3 +43,4 @@ export default class {
 		this.controller.stopAll();
 	}
 }
+module.exports = { AudioObject }

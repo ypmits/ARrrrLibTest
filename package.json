@@ -4,7 +4,7 @@
 	"description": "A test",
 	"main": "index.js",
 	"scripts": {
-		"test": "rollup main.js --file bundle.js --format cjs"
+		"test": "webpack config webpack.config.js"
 	},
 	"keywords": [
 		"test"
@@ -12,8 +12,10 @@
 	"author": "Me",
 	"license": "ISC",
 	"dependencies": {
-		"rollup": "^2.0.2",
-		"socialarlib": "^1.0.1"
+		"socialarlib": "^1.0.1",
+		"webpack": "^4.42.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-merge-and-include-globally": "^2.1.24"
 	},
 	"devDependencies": {}
 }

@@ -1,16 +1,20 @@
 const path = require('path');
+const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
 
 module.exports = {
-	mode: "production",
-	entry: {
-		main: "./node_modules/socialarlib/src/ARTween/ARrrrTween.js"
-	},
+	entry: './scripts/socialarlib.js',
 	output: {
-		path: path.resolve(__dirname, './scripts'),
-		filename: "socialarlib.js",
-		library: "socialarlib",
-		libraryTarget: "commonjs-module"
+		filename: '[name]',
+		path: path.resolve(__dirname, 'scripts'),
 	},
+	plugins: [
+		new MergeIntoSingleFilePlugin({
+			"./scripts/socialarlib.js": [
+				path.resolve(__dirname, 'node_modules/socialarlib/src/ARTween/ARTween.js'),
+				path.resolve(__dirname, 'node_modules/socialarlib/src/AudioObject/AudioObject.js')
+			]
+		})
+	],
 	externals: {
 		Animation: "commonjs Animation",
 		Diagnostics: "commonjs Diagnostics",
@@ -38,6 +42,5 @@ module.exports = {
 		CameraInfo: "commonjs CameraInfo",
 		Materials: "commonjs Materials",
 		Textures: "commonjs Textures"
-	},
-	watch: false
-}
+	}
+};
