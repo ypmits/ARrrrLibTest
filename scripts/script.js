@@ -1,12 +1,22 @@
+/**
+ * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ * WARNING! Make sure that all the used libraries (except for the standard
+ * Spark-AR libraries) are explicitly added as a 'script' inside SparkAR!
+ * Otherwise you might get errors similar like:
+ * 
+ * JavaScript error: TypeError: Result of expression 'require('./Math2')' [undefined] is not an object.
+ * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ */
 const console = require('Diagnostics');
 const Animation = require('Animation');
 const FaceTracking = require('FaceTracking');
-const FaceGestures = require('FaceGestures');
 const Scene = require('Scene');
 const Reactive = require("Reactive");
 const Tweener = require("./ARTween").ARTween;
 const Delay = require("./ARTween").Delay;
 const Ease = require("./ARTween").Ease;
+const FG = require("./ARFaceGestures");
+const Math2 = require("./Math2").Math2;
 
 var rect = Scene.root.find("rect");
 var facemesh = Scene.root.find("faceMesh");
@@ -27,8 +37,23 @@ new Delay(1000, () => {
 });
 
 
+var smiling = new FG.ARSmile(0, ()=>{
+	console.log("Start smiling! :)");
+}, ()=>{
+	console.log("STOP smiling! :(");
+});
+smiling.start();
+
+
+
+var shake = new FG.ARShake(0, ()=>{ console.log("Shake it baby!");});
+shake.start();
+
+
 new Delay(3000, () => {
-	console.log("Let's start the UI-rectangle-stuff!");
+	smiling.stop();
+	console.log("Stopping the smile and let's start the UI-rectangle-stuff!");
+	console.log("45 degrees is "+Math2.deg2rad(45)+" in radians");
 	// new Tweener(rect, [
 	// 	{rotationZ:360, duration:5000, loop:-1, ease:Ease.Linear()}
 	// ], true);
@@ -41,30 +66,3 @@ new Delay(3000, () => {
 	// Bind the scale animation signal to the y-axis scale signal of the plane
 	rect.transform.scaleY = scaleAnimation;
 })
-
-
-this.smileSubscribe = null;
-var setSmile = function(faceID, startCallback, stopCallback) {
-	var faceTracker = FaceTracking.face(faceID);
-	this.smileSubscribe = FaceGestures.isSmiling(faceTracker).monitor().subscribe(
-		function (e) {
-			if (e.newValue) {
-				startCallback()
-			}
-			else {
-				stopCallback();
-			}
-		}
-	);
-}
-
-var stopSmile = function() {
-	if (this.smileSubscribe != null) this.smileSubscribe.unsubscribe();
-}
-
-setSmile(0, ()=>{
-	console.log("Start smiling! :)");
-},
-()=>{
-	console.log("STOP smiling :(");
-});

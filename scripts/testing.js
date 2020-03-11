@@ -1,19 +1,23 @@
-const console = require('Diagnostics');
+'use strict';
+
 const Scene = require('Scene');
 const Animation = require('Animation');
 const Reactive = require('Reactive');
 const Time = require('Time');
 
 /**
-Example:
-const Tweener = require("./ARTween").ARTween;
-const Delay = require("./ARTween").Delay;
-const Ease = require("./ARTween").Ease;
-
-var rect = Scene.root.find("rect");
-var tween = ARrrrTween(rect, [{x:0, duration: 2000},{y: 100, duration: 2000}, {rotationZ: 360, duration: 2000}, {scaleX: 2, duration: 2000}, {scaleY: 20, duration: 2000}]).onComplete(function(){
-	Diagnostics.log("Done!");
-});
+ * Make sure you copy the files next to your standard script.js file in the folder 'scripts'
+ * and add the scripts to Spark AR.
+ * 
+ * Example:
+ * const Tweener = require("./ARTween").ARTween;
+ * const Delay = require("./ARTween").Delay;
+ * const Ease = require("./ARTween").Ease;
+ * 
+ * var rect = Scene.root.find("rect");
+ * var tween = ARrrrTween(rect, [{x:0, duration: 2000},{y: 100, duration: 2000}, {rotationZ: 360, duration: 2000}, {scaleX: 2, duration: 2000}, {scaleY: 20, duration: 2000}]).onComplete(function(){
+ *	Diagnostics.log("Done!");
+ * });
  */
 class ARTween {
 	constructor(object, values, autoplay) {
@@ -48,7 +52,7 @@ class ARTween {
 			material: {
 				opacity: 1
 			}
-		}
+		};
 
 		this.defaultControls = {
 			duration: 500,
@@ -60,7 +64,7 @@ class ARTween {
 			onComplete: function(){},
 			onIteration: function(){},
 			onStart: function(){}
-		}
+		};
 
 		this.animations = [];
 		
@@ -78,13 +82,13 @@ class ARTween {
 			}
 
 			return this;
-		}
+		};
 
 		this.pause = function () {
 			this.StopPlaying();
 
 			return this;
-		}
+		};
 
 		this.reset = function() {
 			this.isPlaying = false;
@@ -96,7 +100,7 @@ class ARTween {
 			});
 
 			this.AssignSignals();
-		}
+		};
 		
 		this.onComplete = function (callback) {
 			if (callback && typeof (callback) === "function") {
@@ -120,7 +124,7 @@ class ARTween {
 			}
 
 			return this;
-		}
+		};
 
 		return this;
 	}
@@ -156,7 +160,7 @@ class ARTween {
 		
 		this.values.forEach(valuesElement => {
 
-			this.EvaluateData(valuesElement)
+			this.EvaluateData(valuesElement);
 		});
 		
 		if(this.autoplay) {
@@ -367,8 +371,6 @@ class ARTween {
 		var start = 0;
 		var end = 0;
 
-		var value = null;
-
 		//Controls
 		var duration = this.defaultControls.duration;
 		var loopCount = this.defaultControls.loopCount;
@@ -534,7 +536,7 @@ class ARTween {
 		var startEnd = {
 			start: 0,
 			end: 0
-		}
+		};
 
 		if(isRotation) {
 			if(data.from != null && data.to != null) {
@@ -695,4 +697,4 @@ class Delay {
 	}
 }
 
-module.exports = { ARTween, Ease, Delay }
+module.exports = { ARTween, Ease, Delay };

@@ -1,2 +1,0 @@
-# DeviceInfo
-### Introduction

@@ -1,4 +1,3 @@
-const console = require('Diagnostics');
 const Scene = require('Scene');
 const Animation = require('Animation');
 const Reactive = require('Reactive');
