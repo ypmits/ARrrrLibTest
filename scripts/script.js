@@ -12,11 +12,12 @@ const Animation = require('Animation');
 const FaceTracking = require('FaceTracking');
 const Scene = require('Scene');
 const Reactive = require("Reactive");
-const Tweener = require("./ARTween").ARTween;
-const Delay = require("./ARTween").Delay;
-const Ease = require("./ARTween").Ease;
-const FG = require("./ARFaceGestures");
-const Math2 = require("./Math2").Math2;
+
+// Import the socialLib:
+const Tweener = require("./socialarlib").Tweener;
+const Delay = require("./socialarlib").Delay;
+const Ease = require("./socialarlib").Ease;
+const Math2 = require("./socialarlib").Math2;
 
 var rect = Scene.root.find("rect");
 var facemesh = Scene.root.find("faceMesh");
